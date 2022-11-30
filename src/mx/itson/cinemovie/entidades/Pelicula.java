@@ -13,7 +13,6 @@ public class Pelicula {
     
     private int id;
     private String titulo = new String();
-    private String anio = new String();
     private double duracion;
     private Genero genero;
 
@@ -43,20 +42,6 @@ public class Pelicula {
      */
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    /**
-     * @return the anio
-     */
-    public String getAnio() {
-        return anio;
-    }
-
-    /**
-     * @param anio the anio to set
-     */
-    public void setAnio(String anio) {
-        this.anio = anio;
     }
 
     /**

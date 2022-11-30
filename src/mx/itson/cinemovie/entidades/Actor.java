@@ -17,6 +17,8 @@ public class Actor {
     private Date fechaNacimiento;
     private String nacionalidad = new String();
     
+    
+    
 
     /**
      * @return the id
