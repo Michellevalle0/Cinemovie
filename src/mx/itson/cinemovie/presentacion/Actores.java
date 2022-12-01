@@ -4,6 +4,14 @@
  */
 package mx.itson.cinemovie.presentacion;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import mx.itson.cinemovie.entidades.Actor;
+
 /**
  *
  * @author michelle
@@ -13,8 +21,15 @@ public class Actores extends javax.swing.JFrame {
     /**
      * Creates new form Actor
      */
+    public static Actor bdActor = new Actor();
+
     public Actores() {
         initComponents();
+        
+    
+    
+        
+        
     }
 
     /**
@@ -48,8 +63,18 @@ public class Actores extends javax.swing.JFrame {
         jLabel4.setText("Nacionalidad");
 
         btnAgregarActor.setText("Agrega actor");
+        btnAgregarActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActorActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar campos");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setText("ACTOR");
@@ -108,6 +133,36 @@ public class Actores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+        private void limpiar() {
+        txtNombre.setText("");
+        txtFechaNacimiento.setText("");
+        txtNacionalidad.setText("");
+        
+    }
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    limpiar();
+       
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnAgregarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActorActionPerformed
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        String nombre = txtNombre.getText();
+        String fechaNacimiento = txtFechaNacimiento.getText();
+        String nacionalidad = txtNacionalidad.getText();
+
+        boolean resultado = Actor.guardar(nombre, new Date(),nacionalidad);
+
+          if(resultado){
+            JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
+            dispose();
+        }        
+    }//GEN-LAST:event_btnAgregarActorActionPerformed
 
     /**
      * @param args the command line arguments

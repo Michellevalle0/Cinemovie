@@ -4,7 +4,16 @@
  */
 package mx.itson.cinemovie.entidades;
 
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import mx.itson.cinemovie.persistencia.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 
 /**
  *
@@ -17,7 +26,100 @@ public class Actor {
     private Date fechaNacimiento;
     private String nacionalidad = new String();
     
+    /**
+     * 
+     * @return 
+     */
+     
+     public static List<Actor> obtenerTodos() {
+        List<Actor> actores = new ArrayList<>();
+        try{
+           
+           Connection conexion = Conexion.obtener();
+           Statement statement = conexion.createStatement();
+           ResultSet resultSet = statement.executeQuery("SELECT id, nombre, apellidos, fechaNacimiento, nacionalidad FROM actor");
+           
+           while(resultSet.next()){
+               Actor actor = new Actor();
+               actor.setId(resultSet.getInt(1));
+               actor.setNombre(resultSet.getString(2));
+               actor.setFechaNacimiento(resultSet.getDate(3));
+               actor.setNacionalidad(resultSet.getString(4));
+               
+               actores.add(actor);
+               
+           }
+        } catch (Exception ex){
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        }
+        return actores;
+     }
+     
+     
+      /**
+       * 
+       * @param nombre
+       * @param fechaNacimiento
+       * @param nacionalidad
+       * @return 
+       */
+     public static boolean guardar(String nombre, Date fechaNacimiento, String nacionalidad){
+        boolean resultado = false;
+        try {
+            Connection conexion = Conexion.obtener();
+            String consulta = "INSERT INTO actor (nombre, nacionalidad) VALUES (?, ?)";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombre);
+            statement.setString(2, nacionalidad);
+            statement.execute();
+            resultado = statement.getUpdateCount() == 1;
+            conexion.close();
+        } catch(Exception ex){
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        }
+        return resultado;
+    }
+     
+     
+     /* public void editar(Actor actor) {
+ 
+          try {
+          Actor actorEditar = new Actor();
+          Connection conexion = Conexion.obtener();
+          String consulta = "UPDATE actor SET nombre=?, fechaNacimiento=?,nacionalidad=?" + 
+                            "WHERE id=?";
+          PreparedStatement statement = conexion.prepareStatement(consulta);
+        
+                statement.setString(1, nombre);
+                statement.setDate(2, (java.sql.Date) fechaNacimiento);
+                statement.setString(3, nacionalidad);
+  
+        if(statement.executeUpdate() > 0){
+                }
+        } catch (Exception ex){
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        
+        return actorEditar;
+     
+     
+        }
+        
+           
+
+
+          
+          
+      }           
+                
+                
+                
+                
+                
+                
+         
+
     
+
     
 
     /**
