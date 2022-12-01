@@ -4,11 +4,8 @@
  */
 package mx.itson.cinemovie.presentacion;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import mx.itson.cinemovie.entidades.Actor;
 
@@ -21,7 +18,6 @@ public class Actores extends javax.swing.JFrame {
     /**
      * Creates new form Actor
      */
-    public static Actor bdActor = new Actor();
 
     public Actores() {
         initComponents();
