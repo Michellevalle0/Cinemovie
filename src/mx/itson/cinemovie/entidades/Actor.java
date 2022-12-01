@@ -81,10 +81,9 @@ public class Actor {
     }
      
      
-     /* public void editar(Actor actor) {
+    /** public void editar(Actor actor) {
  
           try {
-          Actor actorEditar = new Actor();
           Connection conexion = Conexion.obtener();
           String consulta = "UPDATE actor SET nombre=?, fechaNacimiento=?,nacionalidad=?" + 
                             "WHERE id=?";
@@ -99,7 +98,6 @@ public class Actor {
         } catch (Exception ex){
             System.err.println("Ocurrió un error: " + ex.getMessage());
         
-        return actorEditar;
      
      
         }
