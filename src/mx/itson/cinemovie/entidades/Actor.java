@@ -55,6 +55,7 @@ public class Actor {
         return actores;
      }
      
+    
      
       /**
        * 
@@ -80,45 +81,86 @@ public class Actor {
         return resultado;
     }
      
-     
-    /** public void editar(Actor actor) {
- 
-          try {
-          Connection conexion = Conexion.obtener();
-          String consulta = "UPDATE actor SET nombre=?, fechaNacimiento=?,nacionalidad=?" + 
-                            "WHERE id=?";
-          PreparedStatement statement = conexion.prepareStatement(consulta);
-        
-                statement.setString(1, nombre);
-                statement.setDate(2, (java.sql.Date) fechaNacimiento);
-                statement.setString(3, nacionalidad);
-  
-        if(statement.executeUpdate() > 0){
-                }
-        } catch (Exception ex){
+     /**
+      * 
+      * @param id
+      * @return 
+      */
+       public static Actor obtenerPorId(int id) {
+        Actor actor = new Actor();
+        try {
+            Connection conexion = Conexion.obtener();
+            PreparedStatement statement = conexion.prepareStatement("SELECT id, nombre, fechaNacimiento, nacionalidad FROM actor WHERe id = ?");
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                actor.setId(resultSet.getInt(1));
+                actor.setNombre(resultSet.getString(2));
+                actor.setFechaNacimiento(resultSet.getDate(3));
+                actor.setNacionalidad(resultSet.getString(4));
+
+                
+            }
+
+        } catch (Exception ex) {
             System.err.println("Ocurrió un error: " + ex.getMessage());
-        
-     
-     
         }
+        return actor;
+    }
+      
+       /**
+        * 
+        * @param id
+        * @param nombre
+        * @param fechaNacimiento
+        * @param nacionalidad
+        * @return 
+        */
+     public static boolean editar(int id, String nombre, Date fechaNacimiento, String nacionalidad) {
+        boolean resultado = false;
+        try {
+            Connection conexion = Conexion.obtener();
+            String consulta = "UPDATE actor SET nombre = ?, nacionalidad = ? WHERE id = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setString(1, nombre);
+            statement.setString(2, nacionalidad);
+            statement.setInt(3, id);
+            
+            statement.execute();
+            
+            resultado = statement.getUpdateCount() == 1;
+            conexion.close();
+        } catch (Exception ex) {
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        }
+        return resultado;
+    }
+    
+        /**
+         * 
+         * @param id
+         * @return 
+         */
+      public static boolean eliminar(int id) {
+        boolean resultado = false;
+
+        try {
+            Connection con = Conexion.obtener();
+            String consulta = "DELETE FROM actor WHERE (id = ?); ";
+            PreparedStatement st = con.prepareStatement(consulta);
+            st.setInt(1,id);
+            resultado = st.execute();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return resultado;
+    }
+
+     
         
-           
-
-
-          
-          
-      }           
-                
-                
-                
-                
-                
-                
-         
-
-    
-
-    
 
     /**
      * @return the id
