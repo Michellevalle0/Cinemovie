@@ -1,35 +1,35 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package mx.itson.cinemovie.presentacion;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import mx.itson.cinemovie.entidades.Actor;
 
 /**
  *
- * @author michelle
+ * @author Michelle
  */
-public class Actores extends javax.swing.JFrame {
+public class Actores extends javax.swing.JDialog {
+    int id;
 
     /**
-     * Creates new form Actor
+     * Creates new form Actores
      */
-
-    public Actores() {
+    public Actores(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        Llenartabla();
-        Llenartabla();
-
-             
+        
+        this.id = id;
+        if(id != 0){
+            Actor actor = Actor.obtenerPorId(id);
+            txtNombre.setText(actor.getNombre());
+            txtNacionalidad.setText(actor.getNacionalidad());
+                 
+        }
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,186 +40,141 @@ public class Actores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton4 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblActores = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         txtFechaNacimiento = new javax.swing.JTextField();
-        txtNacionalidad = new javax.swing.JTextField();
-        btnAgregarActor = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblActores1 = new javax.swing.JTable();
-        btnEditarActor = new javax.swing.JButton();
-        btnEliminarActor = new javax.swing.JButton();
+        txtNacionalidad = new javax.swing.JTextField();
+        btnLimpiarCampos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JButton();
 
-        jButton4.setBackground(new java.awt.Color(255, 102, 255));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tblActores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Id", "Nombre", "Fecha de Nacimiento", "Nacionalidad"
+        txtNombre.setText("jTextField1");
+
+        jLabel3.setText("Fecha de nacimiento: dd/mm/yyyy");
+
+        txtFechaNacimiento.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        txtFechaNacimiento.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+
+        jLabel5.setText("Nacionalidad:");
+
+        txtNacionalidad.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        txtNacionalidad.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+
+        btnLimpiarCampos.setBackground(new java.awt.Color(0, 30, 108));
+        btnLimpiarCampos.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        btnLimpiarCampos.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiarCampos.setText("Limpiar campos");
+        btnLimpiarCampos.setBorder(null);
+        btnLimpiarCampos.setBorderPainted(false);
+        btnLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarCamposActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(tblActores);
+        });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
+        jLabel1.setText("Agregar actor");
 
         jLabel2.setText("Nombre:");
 
-        jLabel3.setText("Fecha de nacimiento");
-
-        jLabel4.setText("Nacionalidad");
-
-        btnAgregarActor.setText("Agrega actor");
-        btnAgregarActor.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setBackground(new java.awt.Color(78, 148, 79));
+        btnGuardar.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setText("Agregar actor");
+        btnGuardar.setBorder(null);
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActorActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
-
-        btnLimpiar.setText("Limpiar campos");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setText("ACTOR");
-
-        tblActores1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "id", "Nombre", "Fecha de nacimiento", "Nacionalidad"
-            }
-        ));
-        jScrollPane2.setViewportView(tblActores1);
-
-        btnEditarActor.setText("Editar Actor");
-
-        btnEliminarActor.setText("Eliminar Actor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(btnAgregarActor)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(220, 220, 220)
-                                .addComponent(btnEditarActor, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnEliminarActor))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(btnLimpiar)))
+                            .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(btnAgregarActor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                        .addComponent(txtNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(128, 128, 128)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarActor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminarActor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(42, 42, 42))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        private void limpiar() {
+    private void limpiar() {
         txtNombre.setText("");
         txtFechaNacimiento.setText("");
         txtNacionalidad.setText("");
-        
-    }
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-    limpiar();
-       
-    }//GEN-LAST:event_btnLimpiarActionPerformed
+             }
+    
+    private void btnLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCamposActionPerformed
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarCamposActionPerformed
 
-    private void btnAgregarActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActorActionPerformed
-       
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String nombre = txtNombre.getText();
-        String fechaNacimiento = txtFechaNacimiento.getText();
         String nacionalidad = txtNacionalidad.getText();
-
-        boolean resultado = Actor.guardar(nombre, new Date(),nacionalidad);
-
-          if(resultado){
+        
+        boolean resultado = this.id == 0 ?
+            Actor.guardar(nombre, new Date(), nacionalidad):
+            Actor.editar(this.id, nombre, new Date(), nacionalidad);
+        
+           if(resultado){
             JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
             dispose();
-        }        
-    }//GEN-LAST:event_btnAgregarActorActionPerformed
+        }
+        
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,65 +202,31 @@ public class Actores extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Actores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Actores().setVisible(true);
+                Actores dialog = new Actores(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarActor;
-    private javax.swing.JButton btnEditarActor;
-    private javax.swing.JButton btnEliminarActor;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiarCampos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblActores;
-    private javax.swing.JTable tblActores1;
     private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNacionalidad;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
-public void llenarTabla(){
-        
-        DefaultTableModel modelo = (DefaultTableModel) tblActores1.getModel();
-        modelo.setRowCount(0);
-        List<Actor> actor = Actor.obtenerTodos();
-        for (Actor a : actor){
-            modelo.addRow(new Object[]{
-                a.getId(),
-                a.getNombre(),
-                a.getFechaNacimiento().toString(),
-                a.getNacionalidad(),
-            });
-        }
-        tblActores1.setModel(modelo);
-      
-    }
-    
-    public void Llenartabla(){
-    
-       DefaultTableModel modelo = (DefaultTableModel) tblActores1.getModel();
-       Object [] p = new Object[3];
-       p[0]=txtNombre.getText();
-       p[0]=txtFechaNacimiento.getText();
-       p[0]=txtNacionalidad.getText();
-       
-       modelo.addRow(p);
-       tblActores1.setModel(modelo);
-
-
-                
-    }
-    
-
 }

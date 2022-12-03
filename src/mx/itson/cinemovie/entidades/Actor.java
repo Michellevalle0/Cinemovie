@@ -64,7 +64,7 @@ public class Actor {
        * @param nacionalidad
        * @return 
        */
-     public static boolean guardar(String nombre, Date fechaNacimiento, String nacionalidad){
+     public static boolean guardar(String nombre,Date fechaNacimiento,String nacionalidad){
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();

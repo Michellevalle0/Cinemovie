@@ -37,6 +37,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
 
         btnActor.setText("Actor");
+        btnActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActorActionPerformed(evt);
+            }
+        });
 
         btnPeliculas.setText("Peliculas");
         btnPeliculas.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +106,13 @@ public class Principal extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnPeliculasActionPerformed
+
+    private void btnActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActorActionPerformed
+        ActoresLista actores = new ActoresLista();
+        actores.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnActorActionPerformed
 
     /**
      * @param args the command line arguments
