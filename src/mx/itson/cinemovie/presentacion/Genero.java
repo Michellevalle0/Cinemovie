@@ -45,6 +45,7 @@ public class Genero extends javax.swing.JFrame {
 
         btnAgregarGenero.setText("Agregar genero");
 
+        BtnLimpiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         BtnLimpiar.setText("Limpiar campos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

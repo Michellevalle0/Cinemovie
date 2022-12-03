@@ -1,69 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="66" red="66" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnPeliculas" alignment="0" pref="89" max="32767" attributes="0"/>
-                      <Component id="btnActor" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnGenero" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="382" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="btnActor" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="btnPeliculas" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="btnGenero" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JButton" name="btnActor">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actor"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnPeliculas">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Peliculas"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnGenero">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Genero"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Rockwell" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CINEMOVIE"/>
-      </Properties>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -88,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="559" max="32767" attributes="0"/>
+              <EmptySpace pref="532" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" pref="123" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -117,9 +54,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnPeliculas1" alignment="0" pref="89" max="32767" attributes="0"/>
-                      <Component id="btnActor1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnGenero1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnPeliculas" alignment="0" pref="89" max="32767" attributes="0"/>
+                      <Component id="btnActor" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnGenero" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
@@ -129,28 +66,31 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="btnActor1" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="btnActor" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-                  <Component id="btnPeliculas1" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="btnPeliculas" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnGenero1" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="btnGenero" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btnActor1">
+        <Component class="javax.swing.JButton" name="btnActor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actor"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnPeliculas1">
+        <Component class="javax.swing.JButton" name="btnPeliculas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Peliculas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPeliculasActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnGenero1">
+        <Component class="javax.swing.JButton" name="btnGenero">
           <Properties>
             <Property name="text" type="java.lang.String" value="Genero"/>
           </Properties>

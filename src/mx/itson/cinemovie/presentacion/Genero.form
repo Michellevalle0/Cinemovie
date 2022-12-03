@@ -102,6 +102,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="BtnLimpiar">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Limpiar campos"/>
       </Properties>
     </Component>
