@@ -5,6 +5,7 @@
 package mx.itson.cinemovie.presentacion;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.cinemovie.entidades.Pelicula;
 /**
@@ -19,7 +20,7 @@ public class PeliculasLista extends javax.swing.JFrame {
     public PeliculasLista() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +55,15 @@ public class PeliculasLista extends javax.swing.JFrame {
             new String [] {
                 "Id", "Titulo", "Duracion", "Genero"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblPeliculas);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
@@ -68,8 +77,18 @@ public class PeliculasLista extends javax.swing.JFrame {
         });
 
         btnEditarPeli.setText("Editar Pelicula");
+        btnEditarPeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarPeliActionPerformed(evt);
+            }
+        });
 
         btnEliminarPeli.setText("Eliminar Pelicula");
+        btnEliminarPeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPeliActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -155,11 +174,42 @@ public class PeliculasLista extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        // Regresa al Jframe principal
         Principal principal = new Principal();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnEditarPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarPeliActionPerformed
+        // Guarda los valores de la fila seleccionada
+        int id = Integer.parseInt(tblPeliculas.getValueAt(tblPeliculas.getSelectedRow(), 0).toString());
+        String titulo = tblPeliculas.getValueAt(tblPeliculas.getSelectedRow(), 1).toString();
+        Double duracion = Double.parseDouble(tblPeliculas.getValueAt(tblPeliculas.getSelectedRow(), 2).toString());
+        String genero = tblPeliculas.getValueAt(tblPeliculas.getSelectedRow(), 3).toString();
+        
+        PeliculasForm peliculasForm = new PeliculasForm(this, true);
+        // Escribe los valores anteriormente seleccionados en los campos del formulario peliculas
+        peliculasForm.setId(id);
+        peliculasForm.setTitulo(titulo);
+        peliculasForm.setDuracion("" + duracion);
+        peliculasForm.setGenero(genero);
+        peliculasForm.setVisible(true);
+       
+        cargarTabla();
+    }//GEN-LAST:event_btnEditarPeliActionPerformed
+
+    private void btnEliminarPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPeliActionPerformed
+        // Llama al metodo para eliminar una pelicula
+        boolean resultado = Pelicula.eliminar(Integer.parseInt(tblPeliculas.getValueAt(tblPeliculas.getSelectedRow(), 0).toString()));
+        
+        // Mostrar un mensaje de dialogo dependiendo del valor de resultado
+        if(resultado){
+            JOptionPane.showMessageDialog(this, "El registro se borro correctamente", "Registro borrado", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al borrar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        cargarTabla();
+    }//GEN-LAST:event_btnEliminarPeliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,4 +256,8 @@ public class PeliculasLista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblPeliculas;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTable getTblPeliculas(){
+        return tblPeliculas;
+    }
 }

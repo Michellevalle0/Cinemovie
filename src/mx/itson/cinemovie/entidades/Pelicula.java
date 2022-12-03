@@ -87,6 +87,54 @@ public class Pelicula {
     }
     
     /**
+     * Metodo para editar en la base de datos los datos de la pelicula
+     * @param id Id de la pelicula a editar
+     * @param titulo Titulo a editar de la pelicula
+     * @param duracion Duracion a editar de la pelicula
+     * @param genero Genero a editar de la pelicula
+     * @return Indica si se realizo o no el cambio.
+     */
+    public static boolean editar(int id, String titulo, double duracion, String genero){
+        boolean resultado = false;
+        try {
+            Connection conexion = Conexion.obtener();
+            String consulta = "REPLACE INTO pelicula (id, titulo, duracion, genero) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setInt(1, id);
+            statement.setString(2, titulo);
+            statement.setDouble(3, duracion);
+            statement.setString(4, genero);
+            statement.execute();
+            resultado = statement.executeUpdate()== 1;
+            conexion.close();
+        } catch(Exception ex){
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    /**
+     * Metodo para eliminar una pelicula
+     * @param id Id de la pelicula a eliminar
+     * @return Indica si se realizo o no la eliminación.
+     */
+    public static boolean eliminar(int id){
+        boolean resultado = false;
+        try {
+            Connection conexion = Conexion.obtener();
+            String consulta = "DELETE FROM pelicula WHERE id = ?";
+            PreparedStatement statement = conexion.prepareStatement(consulta);
+            statement.setInt(1, id);
+            statement.execute();
+            resultado = statement.getUpdateCount()== 1;
+            conexion.close();
+        } catch(Exception ex){
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+        }
+        return resultado;
+    }
+    
+    /**
      * @return the id
      */
     public int getId() {

@@ -12,6 +12,8 @@ import mx.itson.cinemovie.entidades.Pelicula;
  */
 public class PeliculasForm extends javax.swing.JDialog {
 
+    // ID de la pelicula
+    int id;
     /**
      * Creates new form NewJDialog
      */
@@ -30,24 +32,24 @@ public class PeliculasForm extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         txtTitulo = new javax.swing.JTextField();
         txtDuracion = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblDuracion = new javax.swing.JLabel();
+        lblGenero = new javax.swing.JLabel();
         cmbGenero = new javax.swing.JComboBox<>();
-        btnAgregarPelicula = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
         jLabel1.setText("Pelicula");
 
-        jLabel3.setText("Titulo:");
+        lblTitulo.setText("Titulo:");
 
-        jLabel5.setText("Duracion:");
+        lblDuracion.setText("Duracion:");
 
-        jLabel6.setText("Genero:");
+        lblGenero.setText("Genero:");
 
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Ciencia ficción", "Comedia", "Documental", "Drama", "Erótico", "Fantasía", "Histórico", "Melodrama", "Musical", "Romance", "Suspenso", "Terror", "Western" }));
         cmbGenero.addActionListener(new java.awt.event.ActionListener() {
@@ -56,10 +58,10 @@ public class PeliculasForm extends javax.swing.JDialog {
             }
         });
 
-        btnAgregarPelicula.setText("Agregar Pelicula");
-        btnAgregarPelicula.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarPeliculaActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -70,14 +72,14 @@ public class PeliculasForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel3)
+                    .addComponent(lblGenero)
+                    .addComponent(lblDuracion)
+                    .addComponent(lblTitulo)
                     .addComponent(jLabel1)
                     .addComponent(txtDuracion)
                     .addComponent(txtTitulo)
-                    .addComponent(cmbGenero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAgregarPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
+                    .addComponent(cmbGenero, 0, 231, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,19 +88,19 @@ public class PeliculasForm extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(lblDuracion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(lblGenero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(btnAgregarPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -109,14 +111,22 @@ public class PeliculasForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbGeneroActionPerformed
 
-    private void btnAgregarPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPeliculaActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // Obtiene los valores que se ingresaron en el formulario
         String titulo = txtTitulo.getText();
         Double duracion = Double.parseDouble(txtDuracion.getText());
         String genero = cmbGenero.getSelectedItem().toString();
         
-        boolean resultado = Pelicula.guardar(titulo, duracion, genero);
+        boolean resultado = false;
         
+        // Si id tiene un valor mayor a 1 se editan los campos
+        if (id==0){
+            resultado = Pelicula.guardar(titulo, duracion, genero);
+        } else {
+            resultado = Pelicula.editar(id, titulo, duracion, genero);
+        }
+        
+        // Mostrar un mensaje de dialogo dependiendo del valor de resultado
         if(resultado){
             JOptionPane.showMessageDialog(this, "El registro se guardó correctamente", "Registro guardado", JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -124,7 +134,7 @@ public class PeliculasForm extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar", "Error", JOptionPane.ERROR_MESSAGE);
             dispose();
         }
-    }//GEN-LAST:event_btnAgregarPeliculaActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,13 +182,31 @@ public class PeliculasForm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarPelicula;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cmbGenero;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblDuracion;
+    private javax.swing.JLabel lblGenero;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtDuracion;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+ 
+    public void setId(int id){
+        this.id = id;
+    }
+    
+    public void setTitulo(String titulo){
+        txtTitulo.setText(titulo);
+    }
+    
+    public void setDuracion(String duracion){
+        txtDuracion.setText(duracion);
+    }
+    
+    public void setGenero(String genero){
+        cmbGenero.setSelectedItem(genero);
+    }
+    
+    
 }
