@@ -16,7 +16,8 @@ import java.sql.ResultSet;
 
 
 /**
- *
+ * Contiene los objetos de la clase actor
+ * Contiene CRUD de actor
  * @author michelle
  */
 public class Actor {
@@ -26,11 +27,12 @@ public class Actor {
     private Date fechaNacimiento;
     private String nacionalidad = new String();
     
+    
+    
     /**
-     * 
+     * Visualiza todos la lista de actores que hay registrados.
      * @return 
-     */
-     
+     */ 
      public static List<Actor> obtenerTodos() {
         List<Actor> actores = new ArrayList<>();
         try{
@@ -58,10 +60,10 @@ public class Actor {
     
      
       /**
-       * 
-       * @param nombre
-       * @param fechaNacimiento
-       * @param nacionalidad
+       * Se encarga de retener y guardar la información en la base de datos.
+       * @param nombre actor
+       * @param fechaNacimiento tipo Date 
+       * @param nacionalidad 
        * @return 
        */
      public static boolean guardar(String nombre,Date fechaNacimiento,String nacionalidad){
@@ -83,7 +85,7 @@ public class Actor {
      
      /**
       * 
-      * @param id
+      * @param id 
       * @return 
       */
        public static Actor obtenerPorId(int id) {
@@ -110,7 +112,7 @@ public class Actor {
     }
       
        /**
-        * 
+        * Actualiza y modifica la información del registro de actores que ya habia.
         * @param id
         * @param nombre
         * @param fechaNacimiento
@@ -138,7 +140,7 @@ public class Actor {
     }
     
         /**
-         * 
+         * Nos da la posibilidad de hacer una eliminación temporal o permanente de los registros. 
          * @param id
          * @return 
          */
@@ -163,7 +165,7 @@ public class Actor {
         
 
     /**
-     * @return the id
+     * @return get : indica que podemos tomar algún valor de un atributo.
      */
     public int getId() {
         return id;
@@ -171,6 +173,7 @@ public class Actor {
 
     /**
      * @param id the id to set
+     *  Set : podemos guardar algún valor sobre un atributo.
      */
     public void setId(int id) {
         this.id = id;
