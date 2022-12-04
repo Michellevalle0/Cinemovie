@@ -9,8 +9,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.cinemovie.entidades.Pelicula;
 /**
- *
- * @author michelle
+ * Interfaz con la lista de peliculas
+ * @author Michelle
+ * @author Emmanuel
  */
 public class PeliculasLista extends javax.swing.JFrame {
 
@@ -19,6 +20,11 @@ public class PeliculasLista extends javax.swing.JFrame {
      */
     public PeliculasLista() {
         initComponents();
+        tblPeliculas.getColumnModel().getColumn(0).setPreferredWidth(5);
+        tblPeliculas.getColumnModel().getColumn(2).setPreferredWidth(5);
+        tblPeliculas.getColumnModel().getColumn(4).setPreferredWidth(5);
+        btnEditarPeli.setEnabled(false);
+        btnEliminarPeli.setEnabled(false);
     }
     
     /**
@@ -47,21 +53,33 @@ public class PeliculasLista extends javax.swing.JFrame {
 
         tblPeliculas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Titulo", "Duracion", "Genero"
+                "Id", "Titulo", "Duracion", "Genero", "Calificacion"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblPeliculas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPeliculasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblPeliculas);
@@ -103,23 +121,27 @@ public class PeliculasLista extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(btnRegresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(261, 261, 261))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(btnAgregarPeli)
-                        .addGap(84, 84, 84)
-                        .addComponent(btnEditarPeli)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminarPeli)
-                        .addGap(63, 63, 63))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 25, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRegresar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(btnAgregarPeli)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(167, 167, 167)
+                                .addComponent(btnEditarPeli)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminarPeli)
+                                .addGap(50, 50, 50))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(157, 157, 157)
+                                .addComponent(jLabel2)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,6 +232,22 @@ public class PeliculasLista extends javax.swing.JFrame {
         }
         cargarTabla();
     }//GEN-LAST:event_btnEliminarPeliActionPerformed
+
+    private void tblPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeliculasMouseClicked
+        // Mientras solo sea seleccionada una fila, activar el boton de editar pelicula
+        if (tblPeliculas.getSelectedRows().length <= 1){
+            btnEditarPeli.setEnabled(true);
+        } else {
+            btnEditarPeli.setEnabled(false);
+        }
+        // Si no esta seleccionada ninguna fila, desactivar los botones, de lo contrario, activar el boton de eliminar pelicula
+        if (tblPeliculas.getSelectedRows().length != 0){
+            btnEliminarPeli.setEnabled(true);
+        } else {
+            btnEliminarPeli.setEnabled(false);
+            btnEditarPeli.setEnabled(false);
+        }
+    }//GEN-LAST:event_tblPeliculasMouseClicked
 
     /**
      * @param args the command line arguments
