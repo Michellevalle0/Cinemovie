@@ -118,15 +118,18 @@ public class Pelicula {
      * @param id Id de la pelicula a eliminar
      * @return Indica si se realizo o no la eliminación.
      */
-    public static boolean eliminar(int id){
+    public static boolean eliminar(int[] ids){
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
             String consulta = "DELETE FROM pelicula WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
-            statement.setInt(1, id);
-            statement.execute();
-            resultado = statement.getUpdateCount()== 1;
+            // Ejecutar un statement diferente por cada id que exista en ids
+            for (int i = 0; (ids.length)>i; i++){
+                statement.setInt(1, ids[i]);
+                statement.execute();
+                resultado = statement.getUpdateCount()== 1;
+            }
             conexion.close();
         } catch(Exception ex){
             System.err.println("Ocurrió un error: " + ex.getMessage());

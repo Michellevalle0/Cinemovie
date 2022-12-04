@@ -221,12 +221,21 @@ public class PeliculasLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarPeliActionPerformed
 
     private void btnEliminarPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPeliActionPerformed
-        // Llama al metodo para eliminar una pelicula
-        boolean resultado = Pelicula.eliminar(Integer.parseInt(tblPeliculas.getValueAt(tblPeliculas.getSelectedRow(), 0).toString()));
+        // Llama al metodo para eliminar pelicula(s)
+        
+        // Crea una variable que almacenara la id de cada columna seleccionada
+        int ids[] = tblPeliculas.getSelectedRows();
+        // Asigna la id correspondiente a cada campo que existe en ids
+        for (int i=0; tblPeliculas.getSelectedRowCount()>i; i++){
+            ids[i] = Integer.parseInt(tblPeliculas.getValueAt(tblPeliculas.getSelectedRows()[i], 0).toString());
+        }
+        boolean resultado = Pelicula.eliminar(ids);
         
         // Mostrar un mensaje de dialogo dependiendo del valor de resultado
         if(resultado){
-            JOptionPane.showMessageDialog(this, "El registro se borro correctamente", "Registro borrado", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El registro se actualizo correctamente", "Registro borrado", JOptionPane.INFORMATION_MESSAGE);
+            btnEliminarPeli.setEnabled(false);
+            btnEditarPeli.setEnabled(false);
         } else {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al borrar", "Error", JOptionPane.ERROR_MESSAGE);
         }
