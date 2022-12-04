@@ -4,6 +4,8 @@
  */
 package mx.itson.cinemovie.presentacion;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author michelle
@@ -44,6 +46,11 @@ public class Genero extends javax.swing.JFrame {
         jLabel3.setText("Descripción:");
 
         btnAgregarGenero.setText("Agregar genero");
+        btnAgregarGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarGeneroActionPerformed(evt);
+            }
+        });
 
         BtnLimpiar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         BtnLimpiar.setText("Limpiar campos");
@@ -93,6 +100,22 @@ public class Genero extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarGeneroActionPerformed
+       /** Genero nuevoGenero = new Genero();
+
+        
+        nuevoGenero.setNombre(txtNombre.getText());
+        nuevoGenero.setDescripcion(TxtDes.getText());
+
+        if (Genero.agregar(nuevoGenero) == 1) {
+            JOptionPane.showMessageDialog(null, "El genero ha sido agregado");
+        } else {
+            JOptionPane.showMessageDialog(null, "El genero no ha podido ser agregado");
+        }
+
+*/
+    }//GEN-LAST:event_btnAgregarGeneroActionPerformed
 
     /**
      * @param args the command line arguments
