@@ -9,6 +9,11 @@
             <Property name="text" type="java.lang.String" value="Ingrese aqui:"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="btnResenas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Rese&#xf1;as"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JRadioButtonMenuItem" name="btnActor">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
@@ -113,11 +118,6 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\dell\Downloads\cine.png"/>
-        </Property>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

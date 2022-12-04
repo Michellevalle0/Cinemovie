@@ -187,6 +187,8 @@ public class PeliculasLista extends javax.swing.JFrame {
         PeliculasForm peliculasForm = new PeliculasForm(this, true);
         peliculasForm.setVisible(true);
         
+        btnEliminarPeli.setEnabled(false);
+        btnEditarPeli.setEnabled(false);
         cargarTabla();
     }//GEN-LAST:event_btnAgregarPeliActionPerformed
 
@@ -216,7 +218,9 @@ public class PeliculasLista extends javax.swing.JFrame {
         peliculasForm.setDuracion("" + duracion);
         peliculasForm.setGenero(genero);
         peliculasForm.setVisible(true);
-       
+        
+        btnEliminarPeli.setEnabled(false);
+        btnEditarPeli.setEnabled(false);
         cargarTabla();
     }//GEN-LAST:event_btnEditarPeliActionPerformed
 
