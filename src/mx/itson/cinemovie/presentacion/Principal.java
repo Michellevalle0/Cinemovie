@@ -61,6 +61,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.setText("Ingrese aqui:");
 
         btnResenas.setText("Reseñas");
+        btnResenas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResenasActionPerformed(evt);
+            }
+        });
         jMenu1.add(btnResenas);
 
         btnActor.setSelected(true);
@@ -113,10 +118,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActorActionPerformed
 
     private void btnPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeliculaActionPerformed
-       PeliculasLista peliculas = new PeliculasLista();
+        PeliculasLista peliculas = new PeliculasLista();
         peliculas.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPeliculaActionPerformed
+
+    private void btnResenasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResenasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnResenasActionPerformed
 
     /**
      * @param args the command line arguments
