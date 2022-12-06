@@ -21,6 +21,7 @@ public class ActoresLista extends javax.swing.JFrame {
 
     public ActoresLista() {
         initComponents();
+        cargarTable();
     }
 
     /**
@@ -195,6 +196,7 @@ public class ActoresLista extends javax.swing.JFrame {
         int idActor = Integer.parseInt(tblActores.getModel().getValueAt(renglon, 0).toString());
 
         Actores actores = new Actores(this,true );
+        actores.setId(idActor);
         actores.setVisible(true);
 
         cargarTable();
@@ -210,7 +212,7 @@ public class ActoresLista extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {   
-       cargarTable();
+       
        tblActores.removeColumn(tblActores.getColumnModel().getColumn(0));
     }
     
@@ -219,18 +221,23 @@ public class ActoresLista extends javax.swing.JFrame {
      * Obtenemos todos los objetos a la tabla actores.
      */
     private void cargarTable(){
-       List<Actor> actores = Actor.obtenerTodos();
-       DefaultTableModel modelo = (DefaultTableModel)tblActores.getModel();
-       modelo.setRowCount(0);
-       
+      
+       DefaultTableModel modelo = new DefaultTableModel();
+       modelo.addColumn("id");
+       modelo.addColumn("Nombre");
+       modelo.addColumn("Fecha de Nacimiento");
+       modelo.addColumn("Nacionalidad");
+        List<Actor> actores = Actor.obtenerTodos();
        for(Actor a : actores){
            modelo.addRow(new Object[] {
                a.getId(),
                a.getNombre(),
+               a.getFechaNacimiento(),
                a.getNacionalidad()
 
            });
        }
+       tblActores.setModel(modelo);
        }
        
     
@@ -280,4 +287,5 @@ public class ActoresLista extends javax.swing.JFrame {
     private javax.swing.JTable tblActores;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
+
 }
