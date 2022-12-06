@@ -117,8 +117,8 @@ public class Pelicula {
     }
     
     /**
-     * Metodo para eliminar una pelicula
-     * @param id Id de la pelicula a eliminar
+     * Metodo para eliminar una o varias peliculas
+     * @param ids Ids de las peliculas a eliminar
      * @return Indica si se realizo o no la eliminación.
      */
     public static boolean eliminar(int[] ids){

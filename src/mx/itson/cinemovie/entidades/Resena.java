@@ -25,6 +25,11 @@ public class Resena{
     private String descripcion;
     private float calificacion;
     
+    /**
+     * Metodo para obtener de la base de datos todas las reseñas de una pelicula
+     * @param id de la pelicula
+     * @return Lista con todas las reseñas de la pelicula seleccionada por id
+     */
     public static List<Resena> obtenerTodosPorId(int id){
         
         // Lista que almacenara las reseñas
@@ -55,12 +60,23 @@ public class Resena{
         return resenas;
     }
     
+    /**
+     * Metodo para guardar una nueva reseña
+     * @param idpelicula id de la pelicula donde se almacenara la reseña
+     * @param usuario seudónimo de quien realizo la reseña
+     * @param descripcion detalles de la reseña
+     * @param calificacion en escala del 1 al 5 para la reseña
+     * @return Indica si se realizo o no el guardado
+     */
     public static boolean guardar(int idpelicula, String usuario, String descripcion, float calificacion){
         boolean resultado = false;
         try {
+            // Realiza la conexion con la base de datos
             Connection conexion = Conexion.obtener();
+            // Declaración para insertar una nueva reseña
             String consulta = "INSERT INTO resena (idpelicula, usuario, descripcion, calificacion) VALUES (?, ?, ?, ?)";
             PreparedStatement statement = conexion.prepareStatement(consulta);
+            // Asignar los valores a cada campo de la declaración 
             statement.setInt(1, idpelicula);
             statement.setString(2, usuario);
             statement.setString(3, descripcion);
@@ -74,12 +90,24 @@ public class Resena{
         return resultado;
     }
     
+    /**
+     * Metodo para editar una reseña
+     * @param id de la reseña
+     * @param idpelicula id de la pelicula donde se encuentra la reseña
+     * @param usuario seudónimo de quien realizo la reseña
+     * @param descripcion detalles de la reseña
+     * @param calificacion en escala del 1 al 5 para la reseña
+     * @return Indica si se realizo o no la edición
+     */
     public static boolean editar(int id, int idpelicula, String usuario, String descripcion, float calificacion){
         boolean resultado = false;
         try {
+            // Realiza la conexion con la base de datos
             Connection conexion = Conexion.obtener();
+            // Declaración para reemplazar la reseña
             String consulta = "REPLACE INTO resena (idresena, idpelicula, usuario, descripcion, calificacion) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conexion.prepareStatement(consulta);
+            // Asignar los valores a cada campo de la declaración 
             statement.setInt(1, id);
             statement.setInt(2, idpelicula);
             statement.setString(3, usuario);
@@ -94,10 +122,16 @@ public class Resena{
         return resultado;
     }
     
+    /**
+     * Metodo para eliminar una o varias reseñas
+     * @param ids identificadores de las reseñas a eliminar
+     * @return Indica si se realizo o no la eliminacion
+     */
     public static boolean eliminar(int[] ids){
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
+            // Declaración para eliminar la reseña dependiendo de su id
             String consulta = "DELETE FROM resena WHERE idresena = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             // Ejecutar un statement diferente por cada id que exista en ids
@@ -113,6 +147,11 @@ public class Resena{
         return resultado;
     }
     
+    /**
+     * Metodo para cargar la tabla de reseñas de la base de datos
+     * @param modelo el modelo de la tabla donde se insertaran las reseñas
+     * @param tabla tabla donde se obtendra id de la pelicula
+     */
     public static void cargarTabla(DefaultTableModel modelo, javax.swing.JTable tabla){
         if (tabla.getSelectedRowCount() != 0){
             List<Resena> resenas = Resena.obtenerTodosPorId(Integer.parseInt(tabla.getModel().getValueAt(tabla.getSelectedRow(), 0).toString()));

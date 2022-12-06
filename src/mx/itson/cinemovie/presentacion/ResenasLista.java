@@ -62,6 +62,7 @@ public class ResenasLista extends javax.swing.JFrame {
         btnAgregarRese = new javax.swing.JButton();
         btnEditarRese = new javax.swing.JButton();
         btnEliminarRese = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,6 +166,13 @@ public class ResenasLista extends javax.swing.JFrame {
             }
         });
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,12 +199,17 @@ public class ResenasLista extends javax.swing.JFrame {
                         .addComponent(btnEditarRese)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                         .addComponent(btnEliminarRese)
-                        .addGap(16, 16, 16))))
+                        .addGap(16, 16, 16))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegresar)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(9, 9, 9)
+                .addComponent(btnRegresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,14 +254,17 @@ public class ResenasLista extends javax.swing.JFrame {
         // Si se selecciona una reseña mostrar la descripción en txtDescripción
         if (tblResenas.getSelectedRowCount() == 1){
             txtDescripcion.setText(modelo.getValueAt(tblResenas.getSelectedRow(), 2).toString());
+            // Habilitar los botones editar y eliminar
             btnEditarRese.setEnabled(true);
             btnEliminarRese.setEnabled(true);
         } else if (tblResenas.getSelectedRowCount() > 1){
             txtDescripcion.setText("");
+            // Deshabilitar el boton editar y habilitar eliminar
             btnEditarRese.setEnabled(false);
             btnEliminarRese.setEnabled(true);
         } else {
             txtDescripcion.setText("");
+            // Deshabilitar los botones editar y eliminar
             btnEditarRese.setEnabled(false);
             btnEliminarRese.setEnabled(false);
         }
@@ -256,15 +272,19 @@ public class ResenasLista extends javax.swing.JFrame {
 
     private void btnAgregarReseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarReseActionPerformed
         ResenasForm resenasForm = new ResenasForm(this, true);
+        // Modelos de las tablas
         DefaultTableModel modeloR = (DefaultTableModel)tblResenas.getModel();
         DefaultTableModel modeloP = (DefaultTableModel)tblPeliculas.getModel();
         
+        // Variable que almacena el índice de la fila seleccionada en la tabla peliculas
         int filaPelicula = tblPeliculas.getSelectedRow();
         resenasForm.setIdpelicula(Integer.parseInt(tblPeliculas.getModel().getValueAt(filaPelicula, 0).toString()));
         resenasForm.setVisible(true);
         
         Resena.cargarTabla(modeloR, tblPeliculas);
         Pelicula.cargarTabla(modeloP);
+        
+        // Selecciona la fila nuevamente (al pasar el metodo cargarTabla se pierden las selecciones en las tablas)
         tblPeliculas.setRowSelectionInterval(filaPelicula, filaPelicula);
         
         btnEditarRese.setEnabled(false);
@@ -273,7 +293,9 @@ public class ResenasLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarReseActionPerformed
 
     private void btnEditarReseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarReseActionPerformed
+        // Variable que almacena el índice de la fila seleccionada en la tabla peliculas
         int filaPelicula = tblPeliculas.getSelectedRow();
+        // Id de la reseña a editar
         int id = Integer.parseInt(tblResenas.getModel().getValueAt(tblResenas.getSelectedRow(), 0).toString());
         int idPelicula = Integer.parseInt(tblPeliculas.getModel().getValueAt(filaPelicula, 0).toString());
         String usuario = tblResenas.getValueAt(tblResenas.getSelectedRow(), 0).toString();
@@ -281,9 +303,11 @@ public class ResenasLista extends javax.swing.JFrame {
         float calificacion = Float.parseFloat(tblResenas.getValueAt(tblResenas.getSelectedRow(), 2).toString());
         
         ResenasForm resenasForm = new ResenasForm(this, true);
+        // Modelos de las tablas
         DefaultTableModel modeloR = (DefaultTableModel)tblResenas.getModel();
         DefaultTableModel modeloP = (DefaultTableModel)tblPeliculas.getModel();
         
+        // Asigna los valores de la tabla a los campos que existen en el formulario reseñas
         resenasForm.setId(id);
         resenasForm.setIdpelicula(idPelicula);
         resenasForm.setUsuario(usuario);
@@ -293,6 +317,8 @@ public class ResenasLista extends javax.swing.JFrame {
         resenasForm.setVisible(true);
         Resena.cargarTabla(modeloR, tblPeliculas);
         Pelicula.cargarTabla(modeloP);
+        
+        // Selecciona la fila nuevamente (al pasar el metodo cargarTabla se pierden las selecciones en las tablas)
         tblPeliculas.setRowSelectionInterval(filaPelicula, filaPelicula);
         
         btnEditarRese.setEnabled(false);
@@ -300,9 +326,12 @@ public class ResenasLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarReseActionPerformed
 
     private void btnEliminarReseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarReseActionPerformed
+        // Variable que almacena el índice de la fila seleccionada en la tabla peliculas
         int filaPelicula = tblPeliculas.getSelectedRow();
+        // Modelos de las tablas
         DefaultTableModel modeloR = (DefaultTableModel)tblResenas.getModel();
         DefaultTableModel modeloP = (DefaultTableModel)tblPeliculas.getModel();
+        
         // Crea una variable que almacenara la id de cada columna seleccionada
         int ids[] = tblResenas.getSelectedRows();
         // Asigna la id correspondiente a cada campo que existe en ids
@@ -322,11 +351,19 @@ public class ResenasLista extends javax.swing.JFrame {
         
         Resena.cargarTabla(modeloR, tblPeliculas);
         Pelicula.cargarTabla(modeloP);
+        // Selecciona la fila en la tabla peliculas nuevamente (al pasar el metodo cargarTabla se pierden las selecciones en las tablas)
         tblPeliculas.setRowSelectionInterval(filaPelicula, filaPelicula);
         
         btnEditarRese.setEnabled(false);
         btnEliminarRese.setEnabled(false);
     }//GEN-LAST:event_btnEliminarReseActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // Regresa al Jframe principal
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,6 +405,7 @@ public class ResenasLista extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarRese;
     private javax.swing.JButton btnEditarRese;
     private javax.swing.JButton btnEliminarRese;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

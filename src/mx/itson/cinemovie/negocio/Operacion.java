@@ -14,8 +14,14 @@ import mx.itson.cinemovie.entidades.Resena;
  */
 public class Operacion {
     
+    // Formato para redondear a 2 decimales
     private static final DecimalFormat df = new DecimalFormat("0.00");
     
+    /**
+     * Metodo que permite calcular el promedio de las calificaciones que hay en una lista de reseñas
+     * @param resenas las reseñas de la pelicula
+     * @return el promedio de todas las calificaciones en reseñas que tiene una pelicula 
+     */
     public static String calcularCalificacion(List<Resena> resenas){
         
         float calificaciones[] = new float[resenas.size()];

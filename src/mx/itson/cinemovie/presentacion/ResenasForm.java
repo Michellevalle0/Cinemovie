@@ -15,8 +15,8 @@ import mx.itson.cinemovie.entidades.Resena;
  */
 public class ResenasForm extends javax.swing.JDialog {
 
-    private int id;
-    private int idPelicula;
+    private int id; // id para identificar la reseña 
+    private int idPelicula; // id de la pelicula donde se encuentra la reseña
      
     /**
      * Creates new form ResenasForm
@@ -141,6 +141,7 @@ public class ResenasForm extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String usuario = txtUsuario.getText();
         String descripcion = txtDescripcion.getText();
+        // Guarda la calificacion en base al label calificacion
         float calificacion = Float.parseFloat(lblCalificacion.getText());
         boolean resultado = false;
         
