@@ -103,8 +103,7 @@ public class Pelicula {
             statement.setString(2, titulo);
             statement.setDouble(3, duracion);
             statement.setString(4, genero);
-            statement.execute();
-            resultado = statement.executeUpdate()== 1;
+            resultado = statement.executeUpdate() >= 1;
             conexion.close();
         } catch(Exception ex){
             System.err.println("Ocurrió un error: " + ex.getMessage());

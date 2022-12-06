@@ -244,6 +244,8 @@ public class ResenasLista extends javax.swing.JFrame {
             btnEliminarRese.setEnabled(false);
         }
         
+        btnEditarRese.setEnabled(false);
+        btnEliminarRese.setEnabled(false); 
         txtDescripcion.setText("");
     }//GEN-LAST:event_tblPeliculasMouseClicked
 

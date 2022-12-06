@@ -51,7 +51,7 @@ public class PeliculasForm extends javax.swing.JDialog {
 
         lblGenero.setText("Genero:");
 
-        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Ciencia ficción", "Comedia", "Documental", "Drama", "Erótico", "Fantasía", "Histórico", "Melodrama", "Musical", "Romance", "Suspenso", "Terror", "Western" }));
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acción", "Ciencia ficción", "Comedia", "Documental", "Drama", "Erótico", "Fantasía", "Histórico", "Infantil", "Melodrama", "Musical", "Romance", "Suspenso", "Terror", "Western" }));
         cmbGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbGeneroActionPerformed(evt);
@@ -119,7 +119,7 @@ public class PeliculasForm extends javax.swing.JDialog {
         
         boolean resultado = false;
         
-        // Si id tiene un valor que no esa igual a 0 se editan los campos
+        // Si id tiene un valor que no sea igual a 0 se editan los campos
         if (id==0){
             resultado = Pelicula.guardar(titulo, duracion, genero);
         } else {

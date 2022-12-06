@@ -94,7 +94,7 @@
     <Component class="javax.swing.JComboBox" name="cmbGenero">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="14">
+          <StringArray count="15">
             <StringItem index="0" value="Acci&#xf3;n"/>
             <StringItem index="1" value="Ciencia ficci&#xf3;n"/>
             <StringItem index="2" value="Comedia"/>
@@ -103,12 +103,13 @@
             <StringItem index="5" value="Er&#xf3;tico"/>
             <StringItem index="6" value="Fantas&#xed;a"/>
             <StringItem index="7" value="Hist&#xf3;rico"/>
-            <StringItem index="8" value="Melodrama"/>
-            <StringItem index="9" value="Musical"/>
-            <StringItem index="10" value="Romance"/>
-            <StringItem index="11" value="Suspenso"/>
-            <StringItem index="12" value="Terror"/>
-            <StringItem index="13" value="Western"/>
+            <StringItem index="8" value="Infantil"/>
+            <StringItem index="9" value="Melodrama"/>
+            <StringItem index="10" value="Musical"/>
+            <StringItem index="11" value="Romance"/>
+            <StringItem index="12" value="Suspenso"/>
+            <StringItem index="13" value="Terror"/>
+            <StringItem index="14" value="Western"/>
           </StringArray>
         </Property>
       </Properties>
