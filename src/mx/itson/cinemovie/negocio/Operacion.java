@@ -5,6 +5,7 @@
 package mx.itson.cinemovie.negocio;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import mx.itson.cinemovie.entidades.Resena;
 
@@ -41,6 +42,25 @@ public class Operacion {
         }
         
         return promedioStr;
+    }
+    
+    /**
+     * Metodo que permite convertir String a Date
+     * @param fechaInicio fecha en string
+     * @return fecha en formato para sql
+     */
+    public static java.sql.Date convertirFecha (String fechaInicio){
+        // Fecha convertida a util.Date
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            java.util.Date fecha = sdf.parse(fechaInicio);
+            java.sql.Date sqlFecha = new java.sql.Date(fecha.getTime());
+            return sqlFecha;
+        } catch (Exception ex){
+            System.err.println("Ocurrió un error: " + ex.getMessage());
+            return null;
+        }
+
     }
     
 }

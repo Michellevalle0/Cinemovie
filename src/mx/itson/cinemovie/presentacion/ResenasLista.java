@@ -232,24 +232,29 @@ public class ResenasLista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeliculasMouseClicked
+        // Modelo de la tabla reseñas
         DefaultTableModel modelo = (DefaultTableModel)tblResenas.getModel();
         
+        // Si se selecciona solamente una pelicula cargar las reseñas que existen de esa pelicula
         if (tblPeliculas.getSelectedRowCount() == 1){
             Resena.cargarTabla(modelo, tblPeliculas);
             btnAgregarRese.setEnabled(true);
         } else {
+            // Borrar los datos que existan en la tabla reseñas y desactivar botones
             modelo.setRowCount(0);
             btnAgregarRese.setEnabled(false);
             btnEditarRese.setEnabled(false);
             btnEliminarRese.setEnabled(false);
         }
         
+        // Deshabilitar botones de interacción con reseña y borrar descripción
         btnEditarRese.setEnabled(false);
         btnEliminarRese.setEnabled(false); 
         txtDescripcion.setText("");
     }//GEN-LAST:event_tblPeliculasMouseClicked
 
     private void tblResenasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblResenasMouseClicked
+        // Modelo de la tabla reseñas
         DefaultTableModel modelo = (DefaultTableModel)tblResenas.getModel();
         
         // Si se selecciona una reseña mostrar la descripción en txtDescripción

@@ -13,25 +13,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import mx.itson.cinemovie.negocio.Operacion;
 
 
 /**
  * Contiene los objetos de la clase actor
  * Contiene CRUD de actor
- * @author michelle
+ * @author Michelle
+ * @author Emmanuel
  */
 public class Actor {
     
-    private int id;
-    private String nombre = new String();
-    private Date fechaNacimiento;
-    private String nacionalidad = new String();
-    
-    
+    private int id; // Id para identificar al actor 
+    private String nombre = new String(); // Nombre del actor
+    private Date fechaNacimiento; // Fecha de nacimiento del actor
+    private String nacionalidad = new String(); // Nacionalidad del actor
     
     /**
-     * Visualiza todos la lista de actores que hay registrados.
-     * @return 
+     * Obtiene toda la lista de actores que hay registrados.
+     * @return Lista de actores registrados en la base de datos
      */ 
      public static List<Actor> obtenerTodos() {
         List<Actor> actores = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Actor {
            
            Connection conexion = Conexion.obtener();
            Statement statement = conexion.createStatement();
-           ResultSet resultSet = statement.executeQuery("SELECT id, nombre, apellidos, fechaNacimiento, nacionalidad FROM actor");
+           ResultSet resultSet = statement.executeQuery("SELECT id, nombre, fechaNacimiento, nacionalidad FROM actor");
            
            while(resultSet.next()){
                Actor actor = new Actor();
@@ -60,20 +60,22 @@ public class Actor {
     
      
       /**
-       * Se encarga de retener y guardar la información en la base de datos.
+       * Se encarga de guardar la información en la base de datos.
        * @param nombre actor
-       * @param fechaNacimiento tipo Date 
-       * @param nacionalidad 
-       * @return 
+       * @param fechaNacimiento del actor en string
+       * @param nacionalidad del actor
+       * @return Indica si se realizo o no el guardado.
        */
-     public static boolean guardar(String nombre,Date fechaNacimiento,String nacionalidad){
+     public static boolean guardar(String nombre, String fechaNacimiento, String nacionalidad){
         boolean resultado = false;
+        
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "INSERT INTO actor (nombre, nacionalidad) VALUES (?, ?)";
+            String consulta = "INSERT INTO actor (nombre, fechaNacimiento, nacionalidad) VALUES (?, ?, ?)";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, nombre);
-            statement.setString(2, nacionalidad);
+            statement.setDate(2, Operacion.convertirFecha(fechaNacimiento));
+            statement.setString(3, nacionalidad);
             statement.execute();
             resultado = statement.getUpdateCount() == 1;
             conexion.close();
@@ -84,15 +86,15 @@ public class Actor {
     }
      
      /**
-      * 
-      * @param id 
-      * @return 
+      * Obtiene la información de un actor con su id
+      * @param id para identificar al actor
+      * @return Información del actor
       */
        public static Actor obtenerPorId(int id) {
         Actor actor = new Actor();
         try {
             Connection conexion = Conexion.obtener();
-            PreparedStatement statement = conexion.prepareStatement("SELECT id, nombre, fechaNacimiento, nacionalidad FROM actor WHERe id = ?");
+            PreparedStatement statement = conexion.prepareStatement("SELECT id, nombre, fechaNacimiento, nacionalidad FROM actor WHERE id = ?");
             statement.setInt(1, id);
 
             ResultSet resultSet = statement.executeQuery();
@@ -101,8 +103,7 @@ public class Actor {
                 actor.setNombre(resultSet.getString(2));
                 actor.setFechaNacimiento(resultSet.getDate(3));
                 actor.setNacionalidad(resultSet.getString(4));
-
-                
+            
             }
 
         } catch (Exception ex) {
@@ -113,21 +114,22 @@ public class Actor {
       
        /**
         * Actualiza y modifica la información del registro de actores que ya habia.
-        * @param id
-        * @param nombre
-        * @param fechaNacimiento
-        * @param nacionalidad
-        * @return 
+        * @param id del actor existente
+        * @param nombre del actor
+        * @param fechaNacimiento del actor
+        * @param nacionalidad del actor
+        * @return Indica si se realizo o no la edición.
         */
-     public static boolean editar(int id, String nombre, Date fechaNacimiento, String nacionalidad) {
+     public static boolean editar(int id, String nombre, String fechaNacimiento, String nacionalidad) {
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
-            String consulta = "UPDATE actor SET nombre = ?, nacionalidad = ? WHERE id = ?";
+            String consulta = "UPDATE actor SET nombre = ?, fechaNacimiento = ?, nacionalidad = ? WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             statement.setString(1, nombre);
-            statement.setString(2, nacionalidad);
-            statement.setInt(3, id);
+            statement.setDate(2, Operacion.convertirFecha(fechaNacimiento));
+            statement.setString(3, nacionalidad);
+            statement.setInt(4, id);
             
             statement.execute();
             
@@ -140,20 +142,23 @@ public class Actor {
     }
     
         /**
-         * Nos da la posibilidad de hacer una eliminación temporal o permanente de los registros. 
-         * @param id
-         * @return 
+         * Nos da la posibilidad de hacer una eliminación permanente de los registros. 
+         * @param ids id de los registros a eliminar.
+         * @return Indica si se realizo la eliminacion o no.
          */
-      public static boolean eliminar(int id) {
+      public static boolean eliminar(int[] ids) {
         boolean resultado = false;
 
         try {
             Connection con = Conexion.obtener();
             String consulta = "DELETE FROM actor WHERE (id = ?); ";
             PreparedStatement st = con.prepareStatement(consulta);
-            st.setInt(1,id);
-            resultado = st.execute();
-
+            for (int i = 0; (ids.length)>i; i++){
+                st.setInt(1, ids[i]);
+                st.execute();
+                resultado = st.getUpdateCount()== 1;
+            }
+            con.close();
         } catch (Exception e) {
             System.out.println(e);
         }

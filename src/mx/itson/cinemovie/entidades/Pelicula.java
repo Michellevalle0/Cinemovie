@@ -22,10 +22,10 @@ import mx.itson.cinemovie.persistencia.Conexion;
  */
 public class Pelicula {
     
-    private int id;
-    private String titulo;
-    private double duracion;
-    private String genero;
+    private int id; // Id para identificar la pelicula
+    private String titulo; // Titulo de la pelicula
+    private double duracion; // Duración en minutos de la pelicula
+    private String genero; // Género de la pelicula
 
     /**
      * Metodo para obtener desde la base de datos todos los datos de la tabla pelicula

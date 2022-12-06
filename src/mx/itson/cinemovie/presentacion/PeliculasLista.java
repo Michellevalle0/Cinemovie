@@ -236,7 +236,7 @@ public class PeliculasLista extends javax.swing.JFrame {
 
         // Crea una variable que almacenara la id de cada columna seleccionada
         int ids[] = tblPeliculas.getSelectedRows();
-        // Asigna la id correspondiente a cada campo que existe en ids
+        // Asigna la id correspondiente a las peliculas a cada campo que existe en ids
         for (int i=0; tblPeliculas.getSelectedRowCount()>i; i++){
             ids[i] = Integer.parseInt(tblPeliculas.getValueAt(tblPeliculas.getSelectedRows()[i], 0).toString());
         }

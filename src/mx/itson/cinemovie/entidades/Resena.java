@@ -19,14 +19,14 @@ import mx.itson.cinemovie.persistencia.Conexion;
  */
 public class Resena{
     
-    private int id;
-    private int idPelicula;
-    private String usuario;
-    private String descripcion;
-    private float calificacion;
+    private int id; // Id para identificar la reseña
+    private int idPelicula; // Id de la pelicula donde se encuentra la reseña (Clave Foranea)
+    private String usuario; // Uusario que realizo la reseña
+    private String descripcion; // Detalles de la reseña
+    private float calificacion; // Calificación del 1 al 5 de la reseña
     
     /**
-     * Metodo para obtener de la base de datos todas las reseñas de una pelicula
+     * Metodo para obtener de la base de datos todas las reseñas de una pelicula mediante su id
      * @param id de la pelicula
      * @return Lista con todas las reseñas de la pelicula seleccionada por id
      */
