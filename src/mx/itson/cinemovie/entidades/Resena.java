@@ -195,7 +195,7 @@ public class Resena{
     }
 
     /**
-     * @param idpelicula the idPelicula to set
+     * @param idPelicula the idPelicula to set
      */
     public void setIdPelicula(int idPelicula) {
         this.idPelicula = idPelicula;

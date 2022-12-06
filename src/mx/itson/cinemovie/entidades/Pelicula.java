@@ -16,11 +16,7 @@ import mx.itson.cinemovie.negocio.Operacion;
 import mx.itson.cinemovie.persistencia.Conexion;
 
 /**
- * @param id ID para identificar la pelicula
- * @param titulo Titulo de la pelicula
- * @param duracion Duracion total en minutos de la pelicula
- * @param genero Genero de la pelicula
- * 
+ * Clase pelicula
  * @author Michelle
  * @author Emmanuel
  */
@@ -125,6 +121,7 @@ public class Pelicula {
         boolean resultado = false;
         try {
             Connection conexion = Conexion.obtener();
+            
             String consulta = "DELETE FROM pelicula WHERE id = ?";
             PreparedStatement statement = conexion.prepareStatement(consulta);
             // Ejecutar un statement diferente por cada id que exista en ids

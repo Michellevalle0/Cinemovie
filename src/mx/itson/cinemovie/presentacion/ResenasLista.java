@@ -37,8 +37,7 @@ public class ResenasLista extends javax.swing.JFrame {
         // Desactivar los botones de agregar, editar y eliminar resena
         btnAgregarRese.setEnabled(false);
         btnEditarRese.setEnabled(false);
-        btnEliminarRese.setEnabled(false);
-        
+        btnEliminarRese.setEnabled(false);       
     }
 
     /**
