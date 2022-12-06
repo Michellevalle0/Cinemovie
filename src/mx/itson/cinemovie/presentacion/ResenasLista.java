@@ -10,7 +10,7 @@ import mx.itson.cinemovie.entidades.Pelicula;
 import mx.itson.cinemovie.entidades.Resena;
 
 /**
- *
+ * Lista de reseñas y peliculas
  * @author Emmanuel
  */
 public class ResenasLista extends javax.swing.JFrame {

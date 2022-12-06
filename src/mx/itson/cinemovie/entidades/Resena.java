@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import mx.itson.cinemovie.persistencia.Conexion;
 
 /**
- *
+ * Reseña de la pelicula
  * @author Emmanuel
  */
 public class Resena{

@@ -124,7 +124,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPeliculaActionPerformed
 
     private void btnResenasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResenasActionPerformed
-        // TODO add your handling code here:
+        ResenasLista resenas = new ResenasLista();
+        resenas.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnResenasActionPerformed
 
     /**

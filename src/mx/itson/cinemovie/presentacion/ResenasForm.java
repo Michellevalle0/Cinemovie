@@ -10,7 +10,7 @@ import javax.swing.event.ChangeListener;
 import mx.itson.cinemovie.entidades.Resena;
 
 /**
- *
+ * Formulario de reseñas para agregar o editar
  * @author Emmanuel
  */
 public class ResenasForm extends javax.swing.JDialog {

@@ -95,7 +95,7 @@
               <Table columnCount="5" rowCount="4">
                 <Column editable="false" title="Id" type="java.lang.Integer"/>
                 <Column editable="false" title="Titulo" type="java.lang.String"/>
-                <Column editable="false" title="Duracion" type="java.lang.Double"/>
+                <Column editable="false" title="Duracion" type="java.lang.String"/>
                 <Column editable="false" title="Genero" type="java.lang.String"/>
                 <Column editable="false" title="Calificacion" type="java.lang.Integer"/>
               </Table>
