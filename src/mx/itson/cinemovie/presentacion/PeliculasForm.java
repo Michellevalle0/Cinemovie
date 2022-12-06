@@ -7,6 +7,7 @@ package mx.itson.cinemovie.presentacion;
 import javax.swing.JOptionPane;
 import mx.itson.cinemovie.entidades.Pelicula;
 /**
+ * Formulario para agregar o editar peliculas
  * @author Alexis
  * @author Emmanuel
  */

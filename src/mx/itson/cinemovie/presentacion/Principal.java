@@ -5,8 +5,9 @@
 package mx.itson.cinemovie.presentacion;
 
 /**
- *
- * @author michelle
+ * Clase principal del programa en el cual se pueden acceder a las otras clases
+ * @author Michelle
+ * @author Emmanuel
  */
 public class Principal extends javax.swing.JFrame {
 

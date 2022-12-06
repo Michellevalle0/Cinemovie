@@ -10,7 +10,7 @@ import java.util.List;
 import mx.itson.cinemovie.entidades.Resena;
 
 /**
- *
+ * Contiene metodos con operaciones que ayudan a otras clases
  * @author Emmanuel
  */
 public class Operacion {

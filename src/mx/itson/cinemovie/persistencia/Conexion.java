@@ -6,8 +6,10 @@ package mx.itson.cinemovie.persistencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 /**
- *
- * @author michelle
+ * Realiza la conexion con la base de datos
+ * @author Alexis
+ * @author Michelle
+ * @author Emmanuel
  */
 public class Conexion {
     
