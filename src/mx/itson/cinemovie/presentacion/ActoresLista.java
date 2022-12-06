@@ -13,13 +13,13 @@ import mx.itson.cinemovie.entidades.Actor;
  * Lista de actores
  * @author Michelle
  * @author Emmanuel
+ * @author Alexis
  */
 public class ActoresLista extends javax.swing.JFrame {
 
     /**
-     * Creates new form ActoresLista
-     */
-        
+     * Crea nuevo form ActoresLista
+     */ 
 
     public ActoresLista() {
         initComponents();

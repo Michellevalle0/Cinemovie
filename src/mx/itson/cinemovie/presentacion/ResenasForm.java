@@ -19,7 +19,7 @@ public class ResenasForm extends javax.swing.JDialog {
     private int idPelicula; // id de la pelicula donde se encuentra la reseña
      
     /**
-     * Creates new form ResenasForm
+     * Creates nuevo form Reseñas
      */
     public ResenasForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

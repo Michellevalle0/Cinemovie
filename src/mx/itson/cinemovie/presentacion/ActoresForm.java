@@ -13,13 +13,14 @@ import mx.itson.cinemovie.negocio.Operacion;
  * Formulario para agregar o editar actores
  * @author Michelle
  * @author Emmanuel
+ * @author Alexis
  */
 public class ActoresForm extends javax.swing.JDialog {
     int id;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     /**
-     * Creates new form Actores
+     * Crea nuevo form Actores
      */
     public ActoresForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

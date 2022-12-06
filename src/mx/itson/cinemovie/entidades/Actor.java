@@ -21,6 +21,7 @@ import mx.itson.cinemovie.negocio.Operacion;
  * Contiene CRUD de actor
  * @author Michelle
  * @author Emmanuel
+ * @author Alexis
  */
 public class Actor {
     

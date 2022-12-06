@@ -7,7 +7,7 @@ package mx.itson.cinemovie.presentacion;
 import javax.swing.JOptionPane;
 import mx.itson.cinemovie.entidades.Pelicula;
 /**
- *
+ * @author Alexis
  * @author Emmanuel
  */
 public class PeliculasForm extends javax.swing.JDialog {

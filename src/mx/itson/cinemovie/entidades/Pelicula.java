@@ -17,7 +17,7 @@ import mx.itson.cinemovie.persistencia.Conexion;
 
 /**
  * Clase pelicula
- * @author Michelle
+ * @author Alexis
  * @author Emmanuel
  */
 public class Pelicula {

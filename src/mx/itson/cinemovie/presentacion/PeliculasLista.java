@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import mx.itson.cinemovie.entidades.Pelicula;
 /**
  * Interfaz con la lista de peliculas
- * @author Michelle
+ * @author Alexis
  * @author Emmanuel
  */
 public class PeliculasLista extends javax.swing.JFrame {
