@@ -119,7 +119,7 @@ public class PeliculasForm extends javax.swing.JDialog {
         
         boolean resultado = false;
         
-        // Si id tiene un valor mayor a 1 se editan los campos
+        // Si id tiene un valor que no esa igual a 0 se editan los campos
         if (id==0){
             resultado = Pelicula.guardar(titulo, duracion, genero);
         } else {

@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.itson.cinemovie.negocio.Operacion;
 
 import mx.itson.cinemovie.persistencia.Conexion;
 
@@ -25,7 +27,7 @@ import mx.itson.cinemovie.persistencia.Conexion;
 public class Pelicula {
     
     private int id;
-    private String titulo = new String();
+    private String titulo;
     private double duracion;
     private String genero;
 
@@ -41,6 +43,7 @@ public class Pelicula {
             // Realiza la conexion con la base de datos
             Connection conexion = Conexion.obtener();
             Statement statement = conexion.createStatement();
+            
             ResultSet resultSet = statement.executeQuery("SELECT id, titulo, duracion, genero FROM pelicula");
             
             // Mientras exista un valor en el siguiente campo ejecutar codigo
@@ -135,6 +138,30 @@ public class Pelicula {
             System.err.println("Ocurrió un error: " + ex.getMessage());
         }
         return resultado;
+    }
+    
+    /**}
+     * Metodo para cargar la tabla peliculas de la base de datos e importarla al programa
+     * @param modelo Tabla en donde se cargaran las peliculas
+     */
+    public static void cargarTabla(DefaultTableModel modelo){
+        List<Pelicula> peliculas = Pelicula.obtenerTodos();
+        
+        // Borrar los contenidos de la tabla
+        modelo.setRowCount(0);
+        
+        // Por cada pelicula que exista en peliculas se agregara la misma a la tabla
+        for(Pelicula p : peliculas){
+           List<Resena> resenas = Resena.obtenerTodosPorId(p.getId());
+           
+           modelo.addRow(new Object[] {
+               p.getId(),
+               p.getTitulo(),
+               p.getDuracion(),
+               p.getGenero(),
+               Operacion.calcularCalificacion(resenas),
+           });
+       }  
     }
     
     /**

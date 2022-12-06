@@ -18,11 +18,19 @@ public class PeliculasLista extends javax.swing.JFrame {
     /**
      * Creates new form ListaPeliculas
      */
+    
+    // Modelo para almacenar la tabla pelicula
+    DefaultTableModel modelo;
+    
     public PeliculasLista() {
         initComponents();
+        // Tabla pelicula convertida a modelo
+        modelo = (DefaultTableModel)tblPeliculas.getModel();
+        // Cambiar la longitud de ciertas columnas
         tblPeliculas.getColumnModel().getColumn(0).setPreferredWidth(5);
         tblPeliculas.getColumnModel().getColumn(2).setPreferredWidth(5);
         tblPeliculas.getColumnModel().getColumn(4).setPreferredWidth(5);
+        // Desactivar los botones de editar y eliminar pelicula
         btnEditarPeli.setEnabled(false);
         btnEliminarPeli.setEnabled(false);
     }
@@ -166,8 +174,8 @@ public class PeliculasLista extends javax.swing.JFrame {
     /**
      * Metodo para cargar la tabla peliculas de la base de datos e importarla al programa
      */
-    private void cargarTabla(){
-       List<Pelicula> peliculas = Pelicula.obtenerTodos();
+    /*private void cargarTabla(){
+
        DefaultTableModel modelo = (DefaultTableModel)tblPeliculas.getModel();
        modelo.setRowCount(0);
        
@@ -180,7 +188,7 @@ public class PeliculasLista extends javax.swing.JFrame {
                p.getGenero(),
            });
        }
-    }
+    }*/
     
     private void btnAgregarPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPeliActionPerformed
         // TODO add your handling code here:
@@ -189,12 +197,12 @@ public class PeliculasLista extends javax.swing.JFrame {
         
         btnEliminarPeli.setEnabled(false);
         btnEditarPeli.setEnabled(false);
-        cargarTabla();
+        Pelicula.cargarTabla(modelo);
     }//GEN-LAST:event_btnAgregarPeliActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        cargarTabla();
+        Pelicula.cargarTabla(modelo);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -221,12 +229,11 @@ public class PeliculasLista extends javax.swing.JFrame {
         
         btnEliminarPeli.setEnabled(false);
         btnEditarPeli.setEnabled(false);
-        cargarTabla();
+        Pelicula.cargarTabla(modelo);
     }//GEN-LAST:event_btnEditarPeliActionPerformed
 
     private void btnEliminarPeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPeliActionPerformed
-        // Llama al metodo para eliminar pelicula(s)
-        
+
         // Crea una variable que almacenara la id de cada columna seleccionada
         int ids[] = tblPeliculas.getSelectedRows();
         // Asigna la id correspondiente a cada campo que existe en ids
@@ -243,16 +250,17 @@ public class PeliculasLista extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al borrar", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        cargarTabla();
+        Pelicula.cargarTabla(modelo);
     }//GEN-LAST:event_btnEliminarPeliActionPerformed
 
     private void tblPeliculasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeliculasMouseClicked
         // Mientras solo sea seleccionada una fila, activar el boton de editar pelicula
-        if (tblPeliculas.getSelectedRows().length <= 1){
+        if (tblPeliculas.getSelectedRows().length == 1){
             btnEditarPeli.setEnabled(true);
         } else {
             btnEditarPeli.setEnabled(false);
         }
+        
         // Si no esta seleccionada ninguna fila, desactivar los botones, de lo contrario, activar el boton de eliminar pelicula
         if (tblPeliculas.getSelectedRows().length != 0){
             btnEliminarPeli.setEnabled(true);
